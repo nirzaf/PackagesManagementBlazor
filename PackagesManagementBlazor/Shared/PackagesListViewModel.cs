@@ -4,7 +4,7 @@ namespace PackagesManagementBlazor.Shared
 {
     public class PackagesListViewModel
     {
-        public IEnumerable<PackageInfosViewModel> 
+        public IEnumerable<PackageInfosViewModel>
             Items { get; set; }
     }
 }

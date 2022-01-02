@@ -5,9 +5,10 @@ using PackagesManagementDomain.Events;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PackagesManagementDB.Models
 {
-    public class Package: Entity<int>, IPackage
+    public class Package : Entity<int>, IPackage
     {
         public void FullUpdate(IPackageFullEditDTO o)
         {
@@ -18,10 +19,11 @@ namespace PackagesManagementDB.Models
             }
             else
             {
-                if (o.Price != this.Price)
-                    this.AddDomainEvent(new PackagePriceChangedEvent(
-                            Id, o.Price, EntityVersion, EntityVersion+1));
+                if (o.Price != Price)
+                    AddDomainEvent(new PackagePriceChangedEvent(
+                        Id, o.Price, EntityVersion, EntityVersion + 1));
             }
+
             Name = o.Name;
             Description = o.Description;
             Price = o.Price;
@@ -29,17 +31,15 @@ namespace PackagesManagementDB.Models
             StartValidityDate = o.StartValidityDate;
             EndValidityDate = o.EndValidityDate;
         }
-        [MaxLength(128), Required]
-        public string Name { get; set; }
-        [MaxLength(128)]
-        public string Description { get; set; }
+
+        [MaxLength(128)] [Required] public string Name { get; set; }
+        [MaxLength(128)] public string Description { get; set; }
         public decimal Price { get; set; }
         public int DurationInDays { get; set; }
         public DateTime? StartValidityDate { get; set; }
         public DateTime? EndValidityDate { get; set; }
         public Destination MyDestination { get; set; }
-        [ConcurrencyCheck]
-        public long EntityVersion{ get; set; }
+        [ConcurrencyCheck] public long EntityVersion { get; set; }
 
         public int DestinationId { get; set; }
     }

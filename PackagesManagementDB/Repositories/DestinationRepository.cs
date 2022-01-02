@@ -15,10 +15,12 @@ namespace PackagesManagementDB.Repositories
 
     {
         private MainDbContext context;
+
         public DestinationRepository(MainDbContext context)
         {
             this.context = context;
         }
+
         public IUnitOfWork UnitOfWork => context;
 
         public async Task<IDestination> Get(int id)

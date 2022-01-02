@@ -1,10 +1,10 @@
-﻿
-namespace DDD.DomainLayer
+﻿namespace DDD.DomainLayer
 {
     public interface IRepository
     {
     }
-    public interface IRepository<T>: IRepository
+
+    public interface IRepository<T> : IRepository
     {
         IUnitOfWork UnitOfWork { get; }
     }

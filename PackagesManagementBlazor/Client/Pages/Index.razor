@@ -7,11 +7,11 @@
 <h1>Search packages by location</h1>
 <EditForm Model="search"
           OnValidSubmit="Search">
-    <DataAnnotationsValidator />
+    <DataAnnotationsValidator/>
     <div class="form-group">
         <label for="integerfixed">Insert location starting chars</label>
-        <InputText @bind-Value="search.Location" />
-        <ValidationMessage For="@(() => search.Location)" />
+        <InputText @bind-Value="search.Location"/>
+        <ValidationMessage For="@(() => search.Location)"/>
     </div>
     <button type="submit" class="btn btn-primary">
         Search
@@ -22,60 +22,62 @@
     <div class="table-responsive">
         <table class="table">
             <thead>
-                <tr>
+            <tr>
 
-                    <th scope="col">Destination</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Duration/days</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Available from</th>
-                    <th scope="col">Available to</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Name</th>
+                <th scope="col">Duration/days</th>
+                <th scope="col">Price</th>
+                <th scope="col">Available from</th>
+                <th scope="col">Available to</th>
 
-                </tr>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var package in packages)
-                {
-                    <tr>
-                        <td>
-                            @package.DestinationName
-                        </td>
-                        <td>
-                            @package.Name
-                        </td>
-                        <td>
-                            @package.DurationInDays
-                        </td>
-                        <td>
-                            @package.Price
-                        </td>
-                        <td>
-                            @(package.StartValidityDate.HasValue ?
-                                package.StartValidityDate.Value.ToString("d")
-                                :
-                                String.Empty)
-                        </td>
-                        <td>
-                            @(package.EndValidityDate.HasValue ?
-                                package.EndValidityDate.Value.ToString("d")
-                                :
-                                String.Empty)
-                        </td>
+            @foreach (var package in packages)
+            {
+                <tr>
+                    <td>
+                        @package.DestinationName
+                    </td>
+                    <td>
+                        @package.Name
+                    </td>
+                    <td>
+                        @package.DurationInDays
+                    </td>
+                    <td>
+                        @package.Price
+                    </td>
+                    <td>
+                        @(package.StartValidityDate.HasValue ?
+                            package.StartValidityDate.Value.ToString("d")
+                            : string.Empty)
+                    </td>
+                    <td>
+                        @(package.EndValidityDate.HasValue ?
+                            package.EndValidityDate.Value.ToString("d")
+                            : string.Empty)
+                    </td>
 
-                    </tr>
-                }
+                </tr>
+            }
             </tbody>
         </table>
     </div>
 }
 else if (loading)
 {
-    <p><em>Loading...</em></p>
+    <p>
+        <em>Loading...</em>
+    </p>
 }
+
 @code{
-    SearchViewModel search { get; set; } = new SearchViewModel();
+    SearchViewModel search { get; set; } = new();
     private IEnumerable<PackageInfosViewModel> packages;
     bool loading;
+
     async Task Search()
     {
         packages = null;
@@ -83,6 +85,6 @@ else if (loading)
         await InvokeAsync(StateHasChanged);
         packages = await client.GetByLocation(search.Location);
         loading = false;
-        
     }
+
 }

@@ -5,12 +5,11 @@ using System.Text;
 
 namespace PackagesManagementDomain.Aggregates
 {
-    public interface IDestination: IEntity<int>
+    public interface IDestination : IEntity<int>
     {
         void FullUpdate(IDestination o);
         string Name { get; }
-        string Country { get;}
-        string Description { get;}
-        
+        string Country { get; }
+        string Description { get; }
     }
 }

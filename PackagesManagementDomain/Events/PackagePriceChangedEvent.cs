@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PackagesManagementDomain.Events
 {
-    public class PackagePriceChangedEvent: IEventNotification
+    public class PackagePriceChangedEvent : IEventNotification
     {
         public PackagePriceChangedEvent(int id, decimal price, long oldVersion, long newVersion)
         {
@@ -15,6 +15,7 @@ namespace PackagesManagementDomain.Events
             OldVersion = oldVersion;
             NewVersion = newVersion;
         }
+
         public int PackageId { get; private set; }
         public decimal NewPrice { get; private set; }
         public long OldVersion { get; private set; }

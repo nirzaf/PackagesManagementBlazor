@@ -11,10 +11,12 @@ namespace PackagesManagementBlazor.Client.Services
     public class PackagesClient
     {
         private HttpClient client;
+
         public PackagesClient(HttpClient client)
         {
             this.client = client;
         }
+
         public async Task<IEnumerable<PackageInfosViewModel>> GetByLocation(string location)
         {
             var result =

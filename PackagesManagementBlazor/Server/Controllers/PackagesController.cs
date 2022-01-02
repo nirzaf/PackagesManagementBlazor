@@ -11,13 +11,13 @@ namespace PackagesManagementBlazor.Server.Controllers
     {
         // GET api/<PackagesController>/Flor
         [HttpGet("{location}")]
-        public async Task<PackagesListViewModel> Get(string location, 
-            [FromServices] IPackagesListByLocationQuery query )
+        public async Task<PackagesListViewModel> Get(string location,
+            [FromServices] IPackagesListByLocationQuery query)
         {
             return new PackagesListViewModel
             {
                 Items = await query.GetPackagesOf(location)
             };
-        }  
+        }
     }
 }

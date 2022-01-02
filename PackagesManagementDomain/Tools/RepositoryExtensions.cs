@@ -14,18 +14,16 @@ namespace DDD.DomainLayer
         {
             var repositories = assembly.GetTypes()
                 .Where(x => !x.IsAbstract && x.IsClass
-                && typeof(IRepository).IsAssignableFrom(x));
+                                          && typeof(IRepository).IsAssignableFrom(x));
             foreach (var repository in repositories)
             {
                 var repositoryInterface = repository.GetInterfaces()
-                    .Where(i => !i.IsGenericType && typeof(IRepository) != i 
-                            && typeof(IRepository).IsAssignableFrom(i))
+                    .Where(i => !i.IsGenericType && typeof(IRepository) != i
+                                                 && typeof(IRepository).IsAssignableFrom(i))
                     .SingleOrDefault();
-                if (repositoryInterface != null)
-                {
-                    service.AddScoped(repositoryInterface, repository);
-                }
+                if (repositoryInterface != null) service.AddScoped(repositoryInterface, repository);
             }
+
             return service;
         }
     }

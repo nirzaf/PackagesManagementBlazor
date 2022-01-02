@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PackagesManagementDomain.IRepositories
 {
-    public interface IPackageRepository: IRepository<IPackage>
+    public interface IPackageRepository : IRepository<IPackage>
     {
         Task<IPackage> Get(int id);
         IPackage New();

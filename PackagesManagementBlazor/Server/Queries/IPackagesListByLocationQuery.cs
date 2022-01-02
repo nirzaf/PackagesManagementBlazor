@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace PackagesManagementBlazor.Server.Queries
 {
-    public interface IPackagesListByLocationQuery: IQuery
+    public interface IPackagesListByLocationQuery : IQuery
     {
-        Task<IEnumerable<PackageInfosViewModel>> GetPackagesOf(string location); 
+        Task<IEnumerable<PackageInfosViewModel>> GetPackagesOf(string location);
     }
 }

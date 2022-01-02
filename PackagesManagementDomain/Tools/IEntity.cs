@@ -12,6 +12,5 @@ namespace DDD.DomainLayer
         List<IEventNotification> DomainEvents { get; }
         void AddDomainEvent(IEventNotification evt);
         void RemoveDomainEvent(IEventNotification evt);
-        
     }
 }

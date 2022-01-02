@@ -32,20 +32,21 @@ namespace PackagesManagementDB.Extensions
                 var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole<int>>>();
                 var role = new IdentityRole<int> { Name = "Admins" };
                 await roleManager.CreateAsync(role);
-
             }
+
             if (!await context.Users.AnyAsync())
             {
-
                 var userManager = serviceScope.ServiceProvider.GetService<UserManager<IdentityUser<int>>>();
-                string user = "Admin";
-                string password = "_Admin_pwd1";
+                var user = "Admin";
+                var password = "_Admin_pwd1";
                 IdentityUser<int> currUser = null;
-                var result = await userManager.CreateAsync(currUser = new IdentityUser<int> { UserName = user, Email = "admin@fakedomain.com", EmailConfirmed = true }, password);
+                var result = await userManager.CreateAsync(
+                    currUser = new IdentityUser<int>
+                        { UserName = user, Email = "admin@fakedomain.com", EmailConfirmed = true }, password);
 
                 await userManager.AddToRoleAsync(currUser, "Admins");
-
             }
+
             if (!await context.Destinations.AnyAsync())
             {
                 var firstDestination = new Destination
@@ -53,31 +54,30 @@ namespace PackagesManagementDB.Extensions
                     Name = "Florence",
                     Country = "Italy",
                     Packages = new List<Package>()
+                    {
+                        new()
                         {
-                            new Package
-                            {
-                                Name = "Summer in Florence",
-                                StartValidityDate = new DateTime(2019, 6, 1),
-                                EndValidityDate = new DateTime(2019, 10, 1),
-                                DurationInDays=7,
-                                Price=1000,
-                                EntityVersion=1
-                            },
-                            new Package
-                            {
-                                Name = "Winter in Florence",
-                                StartValidityDate = new DateTime(2019, 12, 1),
-                                EndValidityDate = new DateTime(2020, 2, 1),
-                                DurationInDays=7,
-                                Price=500,
-                                EntityVersion=1
-                            }
+                            Name = "Summer in Florence",
+                            StartValidityDate = new DateTime(2019, 6, 1),
+                            EndValidityDate = new DateTime(2019, 10, 1),
+                            DurationInDays = 7,
+                            Price = 1000,
+                            EntityVersion = 1
+                        },
+                        new()
+                        {
+                            Name = "Winter in Florence",
+                            StartValidityDate = new DateTime(2019, 12, 1),
+                            EndValidityDate = new DateTime(2020, 2, 1),
+                            DurationInDays = 7,
+                            Price = 500,
+                            EntityVersion = 1
                         }
+                    }
                 };
                 context.Destinations.Add(firstDestination);
                 await context.SaveChangesAsync();
             }
         }
-
     }
 }

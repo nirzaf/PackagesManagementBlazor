@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PackagesManagementDB.Models
 {
-    public class PackageEvent: Entity<long>, IPackageEvent
+    public class PackageEvent : Entity<long>, IPackageEvent
     {
         public PackageEventType Type { get; set; }
         public int PackageId { get; set; }

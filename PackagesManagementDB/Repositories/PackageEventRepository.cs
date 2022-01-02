@@ -14,10 +14,12 @@ namespace PackagesManagementDB.Repositories
     public class PackageEventRepository : IPackageEventRepository
     {
         private MainDbContext context;
+
         public PackageEventRepository(MainDbContext context)
         {
             this.context = context;
         }
+
         public IUnitOfWork UnitOfWork => context;
 
         public async Task<IEnumerable<IPackageEvent>> GetFirstN(int n)
@@ -28,7 +30,8 @@ namespace PackagesManagementDB.Repositories
                 .ToListAsync();
         }
 
-        public IPackageEvent New(PackageEventType type, int id, long oldVersion, long? newVersion=null, decimal price=0)
+        public IPackageEvent New(PackageEventType type, int id, long oldVersion, long? newVersion = null,
+            decimal price = 0)
         {
             var model = new PackageEvent
             {

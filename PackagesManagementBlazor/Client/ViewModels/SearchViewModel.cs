@@ -4,7 +4,6 @@ namespace PackagesManagementBlazor.Client.ViewModels
 {
     public class SearchViewModel
     {
-        [Required]
-        public string Location { get; set; }
+        [Required] public string Location { get; set; }
     }
 }

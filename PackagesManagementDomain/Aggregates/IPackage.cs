@@ -11,14 +11,11 @@ namespace PackagesManagementDomain.Aggregates
         void FullUpdate(IPackageFullEditDTO o);
         string Name { get; set; }
 
-        string Description { get;}
+        string Description { get; }
         decimal Price { get; set; }
         int DurationInDays { get; }
-        DateTime? StartValidityDate { get;}
-        DateTime? EndValidityDate { get;  }
+        DateTime? StartValidityDate { get; }
+        DateTime? EndValidityDate { get; }
         int DestinationId { get; }
-        
     }
-
-    
 }
